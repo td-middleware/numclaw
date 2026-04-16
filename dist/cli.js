@@ -33,7 +33,7 @@ async function main() {
   if (false) {}
   if (process.argv[2] === "--claude-in-chrome-mcp") {
     profileCheckpoint("cli_claude_in_chrome_mcp_path");
-    const { runClaudeInChromeMcpServer } = await import("./chunk-6j5wf13n.js");
+    const { runClaudeInChromeMcpServer } = await import("./chunk-xbt7dpgn.js");
     await runClaudeInChromeMcpServer();
     return;
   } else if (process.argv[2] === "--chrome-native-host") {
@@ -43,7 +43,7 @@ async function main() {
     return;
   } else if (process.argv[2] === "--computer-use-mcp") {
     profileCheckpoint("cli_computer_use_mcp_path");
-    const { runComputerUseMcpServer } = await import("./chunk-0w7z03jd.js");
+    const { runComputerUseMcpServer } = await import("./chunk-vanc0h6v.js");
     await runComputerUseMcpServer();
     return;
   }
@@ -65,11 +65,11 @@ async function main() {
   const hasTmuxFlag = args.includes("--tmux") || args.includes("--tmux=classic");
   if (hasTmuxFlag && (args.includes("-w") || args.includes("--worktree") || args.some((a) => a.startsWith("--worktree=")))) {
     profileCheckpoint("cli_tmux_worktree_fast_path");
-    const { enableConfigs } = await import("./chunk-66r8d86g.js");
+    const { enableConfigs } = await import("./chunk-btcbvja7.js");
     enableConfigs();
     const { isWorktreeModeEnabled } = await import("./chunk-pwwa7s62.js");
     if (isWorktreeModeEnabled()) {
-      const { execIntoTmuxWorktree } = await import("./chunk-q58xg5bk.js");
+      const { execIntoTmuxWorktree } = await import("./chunk-q65bcqx8.js");
       const result = await execIntoTmuxWorktree(args);
       if (result.handled) {
         return;
@@ -89,7 +89,7 @@ async function main() {
   const { startCapturingEarlyInput } = await import("./chunk-8mm8b6dd.js");
   startCapturingEarlyInput();
   profileCheckpoint("cli_before_main_import");
-  const { main: cliMain } = await import("./chunk-fz19r52d.js");
+  const { main: cliMain } = await import("./chunk-ep3wn3pz.js");
   profileCheckpoint("cli_after_main_import");
   await cliMain();
   profileCheckpoint("cli_after_main_complete");

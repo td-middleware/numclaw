@@ -1,0 +1,650 @@
+// @bun
+import {
+  Select,
+  clearServerCache,
+  detectIDEs,
+  detectRunningIDEs,
+  getCurrentWorktreeSession,
+  init_AppState,
+  init_CustomSelect,
+  init_client,
+  init_ide,
+  init_worktree,
+  isJetBrainsIde,
+  isSupportedJetBrainsTerminal,
+  isSupportedTerminal,
+  toIDEDisplayName,
+  useAppState,
+  useSetAppState
+} from "./chunk-1dqpv8j1.js";
+import"./chunk-2m9aherq.js";
+import"./chunk-ft4hf2cg.js";
+import"./chunk-hkxa4n4h.js";
+import"./chunk-8rnfj5x5.js";
+import"./chunk-zejm280k.js";
+import"./chunk-4nspekjp.js";
+import"./chunk-var1et7e.js";
+import"./chunk-ehtwnxpg.js";
+import"./chunk-ackrcfpg.js";
+import"./chunk-49k6ne9r.js";
+import"./chunk-bxcfz5gy.js";
+import"./chunk-6kjt5vks.js";
+import"./chunk-2gzv8nrw.js";
+import"./chunk-8h6sdj66.js";
+import"./chunk-cgfdkzhb.js";
+import"./chunk-4n6tcmpp.js";
+import"./chunk-j5bth84e.js";
+import"./chunk-eb45z2nb.js";
+import"./chunk-5pevjsyw.js";
+import"./chunk-xnav6j8h.js";
+import"./chunk-ps49ymvj.js";
+import"./chunk-zk2wsm7d.js";
+import"./chunk-2t0xa4dt.js";
+import"./chunk-mtxv9fk1.js";
+import"./chunk-s4cxmtfp.js";
+import"./chunk-zsgha506.js";
+import"./chunk-4jm600zv.js";
+import"./chunk-xkt36p6r.js";
+import"./chunk-nyabx2pm.js";
+import"./chunk-6hbnjsmm.js";
+import"./chunk-mx28h61f.js";
+import"./chunk-jmxzstxj.js";
+import"./chunk-9e0p91vr.js";
+import"./chunk-25m3pw9q.js";
+import"./chunk-wkth813t.js";
+import"./chunk-chsyvavm.js";
+import"./chunk-6mpw9h55.js";
+import {
+  getGlobalConfig,
+  init_config1 as init_config,
+  saveGlobalConfig
+} from "./chunk-q1w4qzqg.js";
+import"./chunk-sg66v252.js";
+import"./chunk-8bwqtasa.js";
+import"./chunk-j9gxwbe3.js";
+import"./chunk-qtptjcpp.js";
+import"./chunk-1cwdhk7a.js";
+import"./chunk-64c1avct.js";
+import"./chunk-8g5pe1gr.js";
+import"./chunk-gx8016vp.js";
+import"./chunk-4cp6193g.js";
+import"./chunk-8g747a8x.js";
+import"./chunk-d7886r6a.js";
+import"./chunk-f5ma3nh5.js";
+import"./chunk-qz2x630m.js";
+import"./chunk-r7j395t6.js";
+import"./chunk-tv9pcdnz.js";
+import"./chunk-3c25bcsw.js";
+import"./chunk-n9ktjngj.js";
+import"./chunk-q82r31er.js";
+import"./chunk-p2816w9z.js";
+import"./chunk-v9smspw2.js";
+import"./chunk-v1kzp02e.js";
+import"./chunk-64hks9ax.js";
+import"./chunk-crmjpsqe.js";
+import {
+  Dialog,
+  ThemedBox_default,
+  ThemedText,
+  init_source,
+  init_src,
+  source_default
+} from "./chunk-cmsknj6n.js";
+import {
+  require_jsx_dev_runtime,
+  require_react
+} from "./chunk-g338npwr.js";
+import {
+  init_analytics,
+  logEvent
+} from "./chunk-h0rbjg6x.js";
+import"./chunk-0vkfrmqm.js";
+import"./chunk-0xjaqda8.js";
+import"./chunk-h1mr3371.js";
+import"./chunk-36b2q5fg.js";
+import"./chunk-a7rhvq9b.js";
+import"./chunk-qnfx3qtx.js";
+import {
+  execFileNoThrow,
+  init_execFileNoThrow
+} from "./chunk-m74w3187.js";
+import {
+  getCwd,
+  init_cwd
+} from "./chunk-b81hd3m6.js";
+import"./chunk-y3r7v9pq.js";
+import"./chunk-8tnsngw2.js";
+import"./chunk-awb4vc41.js";
+import"./chunk-cbrt5vsb.js";
+import"./chunk-5z28bqne.js";
+import"./chunk-qajrkk97.js";
+import"./chunk-404qm8xt.js";
+import"./chunk-fbv4apne.js";
+import"./chunk-jaaxk89e.js";
+import"./chunk-h4b85amj.js";
+import"./chunk-07069jq1.js";
+import"./chunk-vf612n57.js";
+import"./chunk-d4mdda98.js";
+import"./chunk-7wm5s02e.js";
+import"./chunk-4g3v8y12.js";
+import"./chunk-7739pg2c.js";
+import"./chunk-nh3cd07f.js";
+import"./chunk-8pn8tvgg.js";
+import"./chunk-netzwgv1.js";
+import {
+  __esm,
+  __toESM
+} from "./chunk-qp2qdcda.js";
+
+// src/components/IdeAutoConnectDialog.tsx
+function IdeAutoConnectDialog({
+  onComplete
+}) {
+  const handleSelect = import_react.useCallback(async (value) => {
+    const autoConnect = value === "yes";
+    saveGlobalConfig((current) => ({
+      ...current,
+      autoConnectIde: autoConnect,
+      hasIdeAutoConnectDialogBeenShown: true
+    }));
+    onComplete();
+  }, [onComplete]);
+  const options = [
+    { label: "Yes", value: "yes" },
+    { label: "No", value: "no" }
+  ];
+  return /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Dialog, {
+    title: "Do you wish to enable auto-connect to IDE?",
+    color: "ide",
+    onCancel: onComplete,
+    children: [
+      /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Select, {
+        options,
+        onChange: handleSelect,
+        defaultValue: "yes"
+      }, undefined, false, undefined, this),
+      /* @__PURE__ */ jsx_dev_runtime.jsxDEV(ThemedText, {
+        dimColor: true,
+        children: "You can also configure this in /config or with the --ide flag"
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+function shouldShowAutoConnectDialog() {
+  const config = getGlobalConfig();
+  return !isSupportedTerminal() && config.autoConnectIde !== true && config.hasIdeAutoConnectDialogBeenShown !== true;
+}
+function IdeDisableAutoConnectDialog({
+  onComplete
+}) {
+  const handleSelect = import_react.useCallback((value) => {
+    const disableAutoConnect = value === "yes";
+    if (disableAutoConnect) {
+      saveGlobalConfig((current) => ({
+        ...current,
+        autoConnectIde: false
+      }));
+    }
+    onComplete(disableAutoConnect);
+  }, [onComplete]);
+  const handleCancel = import_react.useCallback(() => {
+    onComplete(false);
+  }, [onComplete]);
+  const options = [
+    { label: "No", value: "no" },
+    { label: "Yes", value: "yes" }
+  ];
+  return /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Dialog, {
+    title: "Do you wish to disable auto-connect to IDE?",
+    subtitle: "You can also configure this in /config",
+    onCancel: handleCancel,
+    color: "ide",
+    children: /* @__PURE__ */ jsx_dev_runtime.jsxDEV(Select, {
+      options,
+      onChange: handleSelect,
+      defaultValue: "no"
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
+function shouldShowDisableAutoConnectDialog() {
+  const config = getGlobalConfig();
+  return !isSupportedTerminal() && config.autoConnectIde === true;
+}
+var import_react, jsx_dev_runtime;
+var init_IdeAutoConnectDialog = __esm(() => {
+  init_src();
+  init_config();
+  init_ide();
+  init_CustomSelect();
+  import_react = __toESM(require_react(), 1);
+  jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
+});
+
+// src/commands/ide/ide.tsx
+import * as path from "path";
+function IDEScreen({
+  availableIDEs,
+  unavailableIDEs,
+  selectedIDE,
+  onClose,
+  onSelect
+}) {
+  const [selectedValue, setSelectedValue] = import_react2.useState(selectedIDE?.port?.toString() ?? "None");
+  const [showAutoConnectDialog, setShowAutoConnectDialog] = import_react2.useState(false);
+  const [showDisableAutoConnectDialog, setShowDisableAutoConnectDialog] = import_react2.useState(false);
+  const handleSelectIDE = import_react2.useCallback((value) => {
+    if (value !== "None" && shouldShowAutoConnectDialog()) {
+      setShowAutoConnectDialog(true);
+    } else if (value === "None" && shouldShowDisableAutoConnectDialog()) {
+      setShowDisableAutoConnectDialog(true);
+    } else {
+      onSelect(availableIDEs.find((ide) => ide.port === parseInt(value)));
+    }
+  }, [availableIDEs, onSelect]);
+  const ideCounts = availableIDEs.reduce((acc, ide) => {
+    acc[ide.name] = (acc[ide.name] || 0) + 1;
+    return acc;
+  }, {});
+  const options = availableIDEs.map((ide) => {
+    const hasMultipleInstances = (ideCounts[ide.name] || 0) > 1;
+    const showWorkspace = hasMultipleInstances && ide.workspaceFolders.length > 0;
+    return {
+      label: ide.name,
+      value: ide.port.toString(),
+      description: showWorkspace ? formatWorkspaceFolders(ide.workspaceFolders) : undefined
+    };
+  }).concat([{ label: "None", value: "None", description: undefined }]);
+  if (showAutoConnectDialog) {
+    return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(IdeAutoConnectDialog, {
+      onComplete: () => handleSelectIDE(selectedValue)
+    }, undefined, false, undefined, this);
+  }
+  if (showDisableAutoConnectDialog) {
+    return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(IdeDisableAutoConnectDialog, {
+      onComplete: () => {
+        onSelect(undefined);
+      }
+    }, undefined, false, undefined, this);
+  }
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Dialog, {
+    title: "Select IDE",
+    subtitle: "Connect to an IDE for integrated development features.",
+    onCancel: onClose,
+    color: "ide",
+    children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+      flexDirection: "column",
+      children: [
+        availableIDEs.length === 0 && /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+          dimColor: true,
+          children: isSupportedJetBrainsTerminal() ? `No available IDEs detected. Please install the plugin and restart your IDE:
+` + "https://docs.claude.com/s/claude-code-jetbrains" : "No available IDEs detected. Make sure your IDE has the Claude Code extension or plugin installed and is running."
+        }, undefined, false, undefined, this),
+        availableIDEs.length !== 0 && /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Select, {
+          defaultValue: selectedValue,
+          defaultFocusValue: selectedValue,
+          options,
+          onChange: (value) => {
+            setSelectedValue(value);
+            handleSelectIDE(value);
+          }
+        }, undefined, false, undefined, this),
+        availableIDEs.length !== 0 && availableIDEs.some((ide) => ide.name === "VS Code" || ide.name === "Visual Studio Code") && /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+          marginTop: 1,
+          children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+            color: "warning",
+            children: "Note: Only one Claude Code instance can be connected to VS Code at a time."
+          }, undefined, false, undefined, this)
+        }, undefined, false, undefined, this),
+        availableIDEs.length !== 0 && !isSupportedTerminal() && /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+          marginTop: 1,
+          children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+            dimColor: true,
+            children: "Tip: You can enable auto-connect to IDE in /config or with the --ide flag"
+          }, undefined, false, undefined, this)
+        }, undefined, false, undefined, this),
+        unavailableIDEs.length > 0 && /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+          marginTop: 1,
+          flexDirection: "column",
+          children: [
+            /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+              dimColor: true,
+              children: [
+                "Found ",
+                unavailableIDEs.length,
+                " other running IDE(s). However, their workspace/project directories do not match the current cwd."
+              ]
+            }, undefined, true, undefined, this),
+            /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+              marginTop: 1,
+              flexDirection: "column",
+              children: unavailableIDEs.map((ide, index) => /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedBox_default, {
+                paddingLeft: 3,
+                children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+                  dimColor: true,
+                  children: [
+                    "\u2022 ",
+                    ide.name,
+                    ": ",
+                    formatWorkspaceFolders(ide.workspaceFolders)
+                  ]
+                }, undefined, true, undefined, this)
+              }, index, false, undefined, this))
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this)
+      ]
+    }, undefined, true, undefined, this)
+  }, undefined, false, undefined, this);
+}
+async function findCurrentIDE(availableIDEs, dynamicMcpConfig) {
+  const currentConfig = dynamicMcpConfig?.ide;
+  if (!currentConfig || currentConfig.type !== "sse-ide" && currentConfig.type !== "ws-ide") {
+    return null;
+  }
+  for (const ide of availableIDEs) {
+    if (ide.url === currentConfig.url) {
+      return ide;
+    }
+  }
+  return null;
+}
+function IDEOpenSelection({
+  availableIDEs,
+  onSelectIDE,
+  onDone
+}) {
+  const [selectedValue, setSelectedValue] = import_react2.useState(availableIDEs[0]?.port?.toString() ?? "");
+  const handleSelectIDE = import_react2.useCallback((value) => {
+    const selectedIDE = availableIDEs.find((ide) => ide.port === parseInt(value));
+    onSelectIDE(selectedIDE);
+  }, [availableIDEs, onSelectIDE]);
+  const options = availableIDEs.map((ide) => ({
+    label: ide.name,
+    value: ide.port.toString()
+  }));
+  function handleCancel() {
+    onDone("IDE selection cancelled", { display: "system" });
+  }
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Dialog, {
+    title: "Select an IDE to open the project",
+    onCancel: handleCancel,
+    color: "ide",
+    children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Select, {
+      defaultValue: selectedValue,
+      defaultFocusValue: selectedValue,
+      options,
+      onChange: (value) => {
+        setSelectedValue(value);
+        handleSelectIDE(value);
+      }
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
+function RunningIDESelector({
+  runningIDEs,
+  onSelectIDE,
+  onDone
+}) {
+  const [selectedValue, setSelectedValue] = import_react2.useState(runningIDEs[0] ?? "");
+  const handleSelectIDE = import_react2.useCallback((value) => {
+    onSelectIDE(value);
+  }, [onSelectIDE]);
+  const options = runningIDEs.map((ide) => ({
+    label: toIDEDisplayName(ide),
+    value: ide
+  }));
+  function handleCancel() {
+    onDone("IDE selection cancelled", { display: "system" });
+  }
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Dialog, {
+    title: "Select IDE to install extension",
+    onCancel: handleCancel,
+    color: "ide",
+    children: /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(Select, {
+      defaultFocusValue: selectedValue,
+      options,
+      onChange: (value) => {
+        setSelectedValue(value);
+        handleSelectIDE(value);
+      }
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
+function InstallOnMount({
+  ide,
+  onInstall
+}) {
+  import_react2.useEffect(() => {
+    onInstall(ide);
+  }, [ide, onInstall]);
+  return null;
+}
+async function call(onDone, context, args) {
+  logEvent("tengu_ext_ide_command", {});
+  const {
+    options: { dynamicMcpConfig },
+    onChangeDynamicMcpConfig
+  } = context;
+  if (args?.trim() === "open") {
+    const worktreeSession = getCurrentWorktreeSession();
+    const targetPath = worktreeSession ? worktreeSession.worktreePath : getCwd();
+    const detectedIDEs2 = await detectIDEs(true);
+    const availableIDEs2 = detectedIDEs2.filter((ide) => ide.isValid);
+    if (availableIDEs2.length === 0) {
+      onDone("No IDEs with Claude Code extension detected.");
+      return null;
+    }
+    return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(IDEOpenSelection, {
+      availableIDEs: availableIDEs2,
+      onSelectIDE: async (selectedIDE) => {
+        if (!selectedIDE) {
+          onDone("No IDE selected.");
+          return;
+        }
+        if (selectedIDE.name.toLowerCase().includes("vscode") || selectedIDE.name.toLowerCase().includes("cursor") || selectedIDE.name.toLowerCase().includes("windsurf")) {
+          const { code } = await execFileNoThrow("code", [targetPath]);
+          if (code === 0) {
+            onDone(`Opened ${worktreeSession ? "worktree" : "project"} in ${source_default.bold(selectedIDE.name)}`);
+          } else {
+            onDone(`Failed to open in ${selectedIDE.name}. Try opening manually: ${targetPath}`);
+          }
+        } else if (isSupportedJetBrainsTerminal()) {
+          onDone(`Please open the ${worktreeSession ? "worktree" : "project"} manually in ${source_default.bold(selectedIDE.name)}: ${targetPath}`);
+        } else {
+          onDone(`Please open the ${worktreeSession ? "worktree" : "project"} manually in ${source_default.bold(selectedIDE.name)}: ${targetPath}`);
+        }
+      },
+      onDone: () => {
+        onDone("Exited without opening IDE", { display: "system" });
+      }
+    }, undefined, false, undefined, this);
+  }
+  const detectedIDEs = await detectIDEs(true);
+  if (detectedIDEs.length === 0 && context.onInstallIDEExtension && !isSupportedTerminal()) {
+    const runningIDEs = await detectRunningIDEs();
+    const onInstall = (ide) => {
+      if (context.onInstallIDEExtension) {
+        context.onInstallIDEExtension(ide);
+        if (isJetBrainsIde(ide)) {
+          onDone(`Installed plugin to ${source_default.bold(toIDEDisplayName(ide))}
+` + `Please ${source_default.bold("restart your IDE")} completely for it to take effect`);
+        } else {
+          onDone(`Installed extension to ${source_default.bold(toIDEDisplayName(ide))}`);
+        }
+      }
+    };
+    if (runningIDEs.length > 1) {
+      return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(RunningIDESelector, {
+        runningIDEs,
+        onSelectIDE: onInstall,
+        onDone: () => {
+          onDone("No IDE selected.", { display: "system" });
+        }
+      }, undefined, false, undefined, this);
+    } else if (runningIDEs.length === 1) {
+      return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(InstallOnMount, {
+        ide: runningIDEs[0],
+        onInstall
+      }, undefined, false, undefined, this);
+    }
+  }
+  const availableIDEs = detectedIDEs.filter((ide) => ide.isValid);
+  const unavailableIDEs = detectedIDEs.filter((ide) => !ide.isValid);
+  const currentIDE = await findCurrentIDE(availableIDEs, dynamicMcpConfig);
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(IDECommandFlow, {
+    availableIDEs,
+    unavailableIDEs,
+    currentIDE,
+    dynamicMcpConfig,
+    onChangeDynamicMcpConfig,
+    onDone
+  }, undefined, false, undefined, this);
+}
+function IDECommandFlow({
+  availableIDEs,
+  unavailableIDEs,
+  currentIDE,
+  dynamicMcpConfig,
+  onChangeDynamicMcpConfig,
+  onDone
+}) {
+  const [connectingIDE, setConnectingIDE] = import_react2.useState(null);
+  const ideClient = useAppState((s) => s.mcp.clients.find((c) => c.name === "ide"));
+  const setAppState = useSetAppState();
+  const isFirstCheckRef = import_react2.useRef(true);
+  import_react2.useEffect(() => {
+    if (!connectingIDE)
+      return;
+    if (isFirstCheckRef.current) {
+      isFirstCheckRef.current = false;
+      return;
+    }
+    if (!ideClient || ideClient.type === "pending")
+      return;
+    if (ideClient.type === "connected") {
+      onDone(`Connected to ${connectingIDE.name}.`);
+    } else if (ideClient.type === "failed") {
+      onDone(`Failed to connect to ${connectingIDE.name}.`);
+    }
+  }, [ideClient, connectingIDE, onDone]);
+  import_react2.useEffect(() => {
+    if (!connectingIDE)
+      return;
+    const timer = setTimeout(onDone, IDE_CONNECTION_TIMEOUT_MS, `Connection to ${connectingIDE.name} timed out.`);
+    return () => clearTimeout(timer);
+  }, [connectingIDE, onDone]);
+  const handleSelectIDE = import_react2.useCallback((selectedIDE) => {
+    if (!onChangeDynamicMcpConfig) {
+      onDone("Error connecting to IDE.");
+      return;
+    }
+    const newConfig = { ...dynamicMcpConfig || {} };
+    if (currentIDE) {
+      delete newConfig.ide;
+    }
+    if (!selectedIDE) {
+      if (ideClient && ideClient.type === "connected" && currentIDE) {
+        ideClient.client.onclose = () => {};
+        clearServerCache("ide", ideClient.config);
+        setAppState((prev) => ({
+          ...prev,
+          mcp: {
+            ...prev.mcp,
+            clients: prev.mcp.clients.filter((c) => c.name !== "ide"),
+            tools: prev.mcp.tools.filter((t) => !t.name?.startsWith("mcp__ide__")),
+            commands: prev.mcp.commands.filter((c) => !c.name?.startsWith("mcp__ide__"))
+          }
+        }));
+      }
+      onChangeDynamicMcpConfig(newConfig);
+      onDone(currentIDE ? `Disconnected from ${currentIDE.name}.` : "No IDE selected.");
+      return;
+    }
+    const url = selectedIDE.url;
+    newConfig.ide = {
+      type: url.startsWith("ws:") ? "ws-ide" : "sse-ide",
+      url,
+      ideName: selectedIDE.name,
+      authToken: selectedIDE.authToken,
+      ideRunningInWindows: selectedIDE.ideRunningInWindows,
+      scope: "dynamic"
+    };
+    isFirstCheckRef.current = true;
+    setConnectingIDE(selectedIDE);
+    onChangeDynamicMcpConfig(newConfig);
+  }, [
+    dynamicMcpConfig,
+    currentIDE,
+    ideClient,
+    setAppState,
+    onChangeDynamicMcpConfig,
+    onDone
+  ]);
+  if (connectingIDE) {
+    return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(ThemedText, {
+      dimColor: true,
+      children: [
+        "Connecting to ",
+        connectingIDE.name,
+        "\u2026"
+      ]
+    }, undefined, true, undefined, this);
+  }
+  return /* @__PURE__ */ jsx_dev_runtime2.jsxDEV(IDEScreen, {
+    availableIDEs,
+    unavailableIDEs,
+    selectedIDE: currentIDE,
+    onClose: () => onDone("IDE selection cancelled", { display: "system" }),
+    onSelect: handleSelectIDE
+  }, undefined, false, undefined, this);
+}
+function formatWorkspaceFolders(folders, maxLength = 100) {
+  if (folders.length === 0)
+    return "";
+  const cwd = getCwd();
+  const foldersToShow = folders.slice(0, 2);
+  const hasMore = folders.length > 2;
+  const ellipsisOverhead = hasMore ? 3 : 0;
+  const separatorOverhead = (foldersToShow.length - 1) * 2;
+  const availableLength = maxLength - separatorOverhead - ellipsisOverhead;
+  const maxLengthPerPath = Math.floor(availableLength / foldersToShow.length);
+  const cwdNFC = cwd.normalize("NFC");
+  const formattedFolders = foldersToShow.map((folder) => {
+    const folderNFC = folder.normalize("NFC");
+    if (folderNFC.startsWith(cwdNFC + path.sep)) {
+      folder = folderNFC.slice(cwdNFC.length + 1);
+    }
+    if (folder.length <= maxLengthPerPath) {
+      return folder;
+    }
+    return "\u2026" + folder.slice(-(maxLengthPerPath - 1));
+  });
+  let result = formattedFolders.join(", ");
+  if (hasMore) {
+    result += ", \u2026";
+  }
+  return result;
+}
+var import_react2, jsx_dev_runtime2, IDE_CONNECTION_TIMEOUT_MS = 35000;
+var init_ide2 = __esm(() => {
+  init_source();
+  init_analytics();
+  init_CustomSelect();
+  init_src();
+  init_IdeAutoConnectDialog();
+  init_src();
+  init_client();
+  init_AppState();
+  init_cwd();
+  init_execFileNoThrow();
+  init_ide();
+  init_worktree();
+  import_react2 = __toESM(require_react(), 1);
+  jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
+});
+init_ide2();
+
+export {
+  formatWorkspaceFolders,
+  call
+};
